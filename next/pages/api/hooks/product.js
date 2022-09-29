@@ -1,4 +1,4 @@
-import { SIGNATURE_HEADER_NAME, isValidSignature } from "@sanity/client";
+import { SIGNATURE_HEADER_NAME, isValidSignature } from "@sanity/webhook";
 
 const handler = async (req, res) => {
   try {
@@ -10,14 +10,14 @@ const handler = async (req, res) => {
         process.env.SANITY_WEBHOOK_SECRET
       )
     )
-      return res.status(401).json({ msg: "Invalid Request" });
+      return res.status(401).json({ msg: "Invalid request!" });
     const { slug } = req.body;
     await res.revalidate(`/product/isr/${slug}`);
     await res.revalidate(`/product/isr/`);
-    console.log(slug);
-    res.status(200).json({ msg: "Product pages revalidated" });
+    console.log("slug:", slug);
+    res.status(200).json({ msg: "Product pages revalidated." });
   } catch (error) {
-    res.status(200).json({ err: "Something went Wrong" });
+    res.status(500).json({ err: "Something went Wrong!" });
   }
 };
 
