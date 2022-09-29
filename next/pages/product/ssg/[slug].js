@@ -18,7 +18,7 @@ export const getStaticProps = async (context) => {
     { slug }
   );
   return {
-    props: { product },
+    revalidate: 10,
   };
 };
 
@@ -28,6 +28,6 @@ export const getStaticPaths = async () => {
   );
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
