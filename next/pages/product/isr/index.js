@@ -9,7 +9,7 @@ const Products = ({ products }) => {
         <h1>Loading</h1>
       ) : (
         products.map((product) => (
-          <Link key={product._id} href={`/product/ssg/${product.slug}`}>
+          <Link key={product._id} href={`/product/isr/${product.slug}`}>
             <p>{product.title}</p>
           </Link>
         ))
